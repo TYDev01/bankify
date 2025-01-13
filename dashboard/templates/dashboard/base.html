@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}" />
+  </head>
+  <body>
+    {% comment %} Header Starts {% endcomment %}
+    <div class="dash_header">
+        <div class="logo">
+            <img src="" alt="logo" />
+        </div>
+        <div class="profile">
+            <p>Welcome: <span class="usercolor">{{ user.username }}</span></p>
+        </div>
+    </div>
+    {% comment %} Header Ends {% endcomment %}
+    {% comment %} Sidebar starts {% endcomment %}
+    <div class="sidebar">
+      <div class="sidebars">
+        <div class="dash_menu items">
+          <a href="{% url "dashboard-home" %}">Dashboard</a>
+        </div>
+        <div class="trx items">
+          <a href="#">Transfer</a>
+        </div>
+        <div class="trx_details items">
+          <a href="#">Transaction Details</a>
+        </div>
+        <div class="settings items">
+          <a href="#">Settings</a>
+        </div>
+        <div class="logout items">
+          <a href="{% url "logout" %}">Logout</a>
+        </div>
+      </div>
+    </div>
+    {% comment %} Sidebar Ends {% endcomment %}
+    {% block content %}
+    
+    {% endblock  %}
+  </body>
+</html>

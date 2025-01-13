@@ -1,0 +1,11 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="deposit_button">
+      <a href="{% url "deposit" %}">Deposit</a>
+    </div>
+    <p>Account: {{ account_number }}</p>
+    <p>Balance: {{ balance }}</p>
+{% endblock  %}
+

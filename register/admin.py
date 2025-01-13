@@ -1,0 +1,30 @@
+from django.contrib import admin
+from. models import UserForm, Transfer#This is how we import from our models.py, so we can be able to view the models we created from our user adminttttttttt
+
+# Register your models here.
+# class MemberUF(admin.ModelAdmin):
+#     list_display= ("firstname", "email", "password")
+
+# admin.site.register(UserForm, MemberUF),
+# admin.site.register(Transfer, )
+
+
+# from django.contrib import admin
+# from .models import UserForm, SignIn, Transfer
+
+# Register models
+admin.site.register(UserForm)
+# admin.site.register(SignIn)
+admin.site.register(Transfer)
+from .models import Deposit
+
+@admin.register(Deposit)
+class DepositAdmin(admin.ModelAdmin):
+    list_display = ['user', 'amount', 'is_approved', 'created_at', 'approved_at']
+    list_filter = ['is_approved', 'created_at']
+    actions = ['approve_selected']
+
+    def approve_selected(self, request, queryset):
+        for deposit in queryset.filter(is_approved=False):
+            deposit.approve()
+        self.message_user(request, "Selected deposits have been approved.")
